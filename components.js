@@ -5,8 +5,8 @@
 
   function getAPI() {
     return {
-      search: () => {
-        return fetch('https://swapi.co/api/people/?search=r2')
+      search: (text = 'L') => {
+        return fetch(`https://swapi.co/api/people/?search=${text}`)
           .then(response => response.json())
           .then(data => {
             console.log(data);
