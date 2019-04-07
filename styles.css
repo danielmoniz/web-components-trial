@@ -1,4 +1,8 @@
 
+body {
+  margin: 0;
+}
+
 h1 {
   text-align: center;
 }
@@ -13,4 +17,14 @@ header nav {
 
 .results {
   display: grid;
+  padding: 10px;
+}
+
+footer {
+  padding: 30px 10px;
+  background-color: #DDDDDD;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
