@@ -18,15 +18,22 @@
 
   function defineCustomElements(api) {
     const searchBoxTemplate = document.createElement('template')
-    searchBoxTemplate.innerHTML = `<form>
-      <input type="text" placeholder="Star Wars character" />
-      <img
-        class="loadingSpinner"
-        src="animated_spinner.gif"
-        width="12"
-        style="display: none;"
-      />
-    </form>`
+    searchBoxTemplate.innerHTML = `
+      <style>
+        input { color: red }
+        .loadingSpinner { display: none }
+      </style>
+      <form>
+        <input
+          type="text"
+          placeholder="Star Wars character"
+        />
+        <img
+          class="loadingSpinner"
+          src="animated_spinner.gif"
+          width="12"
+        />
+      </form>`
 
     window.customElements.define('sw-search-box', class extends HTMLElement {
       constructor() {
