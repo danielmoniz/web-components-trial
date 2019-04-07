@@ -17,23 +17,32 @@
   }
 
   function defineCustomElements(api) {
+    const searchBoxTemplate = document.createElement('template')
+    searchBoxTemplate.innerHTML = `<form>
+      <input type="text" placeholder="Star Wars character" />
+      <img
+        class="loadingSpinner"
+        src="animated_spinner.gif"
+        width="12"
+        style="display: none;"
+      />
+    </form>`
+
     window.customElements.define('sw-search-box', class extends HTMLElement {
       constructor() {
         super()
 
-        this.addEventListener('submit', (event) => {
+        let shadowRoot = this.attachShadow({mode: 'open'})
+        shadowRoot.appendChild(searchBoxTemplate.content.cloneNode(true))
+
+        shadowRoot.addEventListener('submit', (event) => {
           event.preventDefault()
-          console.log('Submitted!');
+          const spinner = shadowRoot.querySelector('.loadingSpinner')
+          spinner.style.display = 'inline'
           api.search().then(data => {
-            console.log("Search completed!", data);
+            spinner.style.display = 'none'
           })
         })
-      }
-
-      connectedCallback() {
-        this.innerHTML = `<form>
-          <input type="text" placeholder="Star Wars character"/>
-        </form>`
       }
     })
   }
